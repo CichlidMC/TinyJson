@@ -1,0 +1,22 @@
+{
+  "test":
+          true,
+  "test2": null, "test3: false": "true",
+
+  "list": [
+    [
+"list2",
+                               [
+        "list3"
+      ],
+      {
+        "veryNested": {
+          "false"       : true
+        }
+
+
+}
+            ],
+    1e-20
+  ]
+}

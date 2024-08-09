@@ -1,0 +1,11 @@
+{
+  "name": "Gerald",
+  "i": -1,
+  "d": 101e-12,
+  "thingy": {
+    "name": "Also Gerald",
+    "numbers": [
+      1, 2, 3, 100e9, 12e-3
+    ]
+  }
+}
