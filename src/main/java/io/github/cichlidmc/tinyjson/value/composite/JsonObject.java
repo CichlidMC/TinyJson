@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.function.BiConsumer;
 
@@ -40,6 +41,10 @@ public class JsonObject extends JsonValue {
 	public JsonValue getNullable(String key) {
 		this.accessed.add(key);
 		return this.entries.get(key);
+	}
+
+	public Optional<JsonValue> getOptional(String key) {
+		return Optional.ofNullable(this.getNullable(key));
 	}
 
 	/**

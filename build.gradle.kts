@@ -1,5 +1,6 @@
 plugins {
     id("java")
+    id("maven-publish")
 }
 
 group = "io.github.cichlidmc"
@@ -10,4 +11,16 @@ repositories {
 }
 
 dependencies {
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("mavenJava") {
+            from(components["java"])
+        }
+    }
+
+    repositories {
+        mavenLocal()
+    }
 }
