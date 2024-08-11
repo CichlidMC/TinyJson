@@ -4,7 +4,7 @@ plugins {
 }
 
 group = "io.github.cichlidmc"
-version = "1.0-SNAPSHOT"
+version = "1.0.0"
 
 repositories {
     mavenCentral()
@@ -12,6 +12,8 @@ repositories {
 
 dependencies {
 }
+
+java.withSourcesJar()
 
 publishing {
     publications {

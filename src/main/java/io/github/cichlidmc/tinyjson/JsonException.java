@@ -10,4 +10,12 @@ public class JsonException extends RuntimeException {
 	public JsonException(String message) {
 		super(message);
 	}
+
+	/**
+	 * Create a new JsonException with the given value as context. The path is added to the message.
+	 * Format: ${path}: ${message}
+	 */
+	public JsonException(JsonValue value, String message) {
+		this(value.getPath() + ": " + message);
+	}
 }
