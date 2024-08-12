@@ -58,6 +58,10 @@ public class JsonObject extends JsonValue {
 		return value;
 	}
 
+	public boolean contains(String key) {
+		return this.entries.containsKey(key);
+	}
+
 	public int size() {
 		return this.entries.size();
 	}
