@@ -24,6 +24,9 @@ publishing {
     }
 
     repositories {
-        mavenLocal()
+        maven("https://mvn.devos.one/snapshots") {
+            name = "devOS"
+            credentials(PasswordCredentials::class)
+        }
     }
 }
