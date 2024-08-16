@@ -44,4 +44,4 @@ jobs:
 
       -   name: Publish
           if: ${{ github.event.inputs.publish }}
-          run: ./gradlew publish -PdevOSUsername=${{ secrets.DEVOS_USER }} -PdevOSPassword=${{ secrets.DEVOS_PASS }}
+          run: ./gradlew publish -PdevOSUsername=cichlid -PdevOSPassword="${{ secrets.DEVOS_PASS }}"
