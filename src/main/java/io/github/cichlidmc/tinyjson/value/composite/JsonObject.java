@@ -58,6 +58,20 @@ public class JsonObject extends JsonValue {
 		return value;
 	}
 
+	/**
+	 * Remove the value associated with the given key from this object.
+	 * Since the value is no longer associated with this object, its path is cleared.
+	 * @return the removed object, or null if it did not exist
+	 */
+	public JsonValue remove(String key) {
+		JsonValue removed = this.entries.remove(key);
+		if (removed != null) {
+			removed.setPath(null);
+			this.accessed.remove(key);
+		}
+		return removed;
+	}
+
 	public boolean contains(String key) {
 		return this.entries.containsKey(key);
 	}
@@ -71,7 +85,7 @@ public class JsonObject extends JsonValue {
 	}
 
 	/**
-	 * @return the set of fields that have been accessed directly via {@link #getNullable(String)}.
+	 * @return the set of fields that have been accessed directly via {@link #get(String)}.
 	 */
 	public Set<String> accessedFields() {
 		return this.accessed;
