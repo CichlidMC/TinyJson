@@ -5,6 +5,9 @@ import io.github.cichlidmc.tinyjson.test.framework.Test;
 import io.github.cichlidmc.tinyjson.value.composite.JsonArray;
 import io.github.cichlidmc.tinyjson.value.composite.JsonObject;
 import io.github.cichlidmc.tinyjson.value.JsonValue;
+import io.github.cichlidmc.tinyjson.value.primitive.JsonBool;
+import io.github.cichlidmc.tinyjson.value.primitive.JsonNull;
+import io.github.cichlidmc.tinyjson.value.primitive.JsonNumber;
 
 @Group("complex")
 public class ComplexJsonTests {
@@ -41,4 +44,15 @@ public class ComplexJsonTests {
 					)
 					.add(1e-20)
 			);
+
+	@Test
+	public static final JsonValue COMMENTS = new JsonObject()
+			.put("test", new JsonNumber(1))
+			.put("int", new JsonNumber(5))
+			.put("object", new JsonObject()
+					.put("bool", JsonBool.createTrue())
+					.put("/*string//", "/*yes*///")
+					.put("empty", new JsonNull())
+			);
+
 }

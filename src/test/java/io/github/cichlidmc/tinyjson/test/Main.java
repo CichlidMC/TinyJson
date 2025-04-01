@@ -2,15 +2,9 @@ package io.github.cichlidmc.tinyjson.test;
 
 import java.io.IOException;
 import java.net.URL;
-import java.nio.file.FileVisitResult;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.SimpleFileVisitor;
-import java.nio.file.attribute.BasicFileAttributes;
 
 import io.github.cichlidmc.tinyjson.TinyJson;
-import io.github.cichlidmc.tinyjson.test.derserialize.Doohickey;
+import io.github.cichlidmc.tinyjson.test.deserialize.Doohickey;
 import io.github.cichlidmc.tinyjson.test.framework.TestRunner;
 import io.github.cichlidmc.tinyjson.test.tests.ComplexJsonTests;
 import io.github.cichlidmc.tinyjson.test.tests.SimpleJsonTests;

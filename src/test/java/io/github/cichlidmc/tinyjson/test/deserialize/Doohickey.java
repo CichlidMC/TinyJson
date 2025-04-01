@@ -1,4 +1,4 @@
-package io.github.cichlidmc.tinyjson.test.derserialize;
+package io.github.cichlidmc.tinyjson.test.deserialize;
 
 import java.util.List;
 import java.util.stream.Collectors;

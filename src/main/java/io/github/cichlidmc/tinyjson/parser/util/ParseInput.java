@@ -18,6 +18,9 @@ public class ParseInput {
 	private int line = 1;
 	private int col = 1;
 
+	// Nullable
+	private CommentState commentState;
+
 	public ParseInput(Reader reader) {
 		this.reader = new PushbackReader(reader, 64);
 	}
@@ -51,11 +54,67 @@ public class ParseInput {
 	}
 
 	/**
-	 * Skip past all whitespace at the start of the input, throwing if EOF is reached.
+	 * Skip past all whitespace at the start of the input, including comments.
 	 */
 	public void skipWhitespace() throws IOException {
-		while (Character.isWhitespace(this.peek())) {
-			this.next();
+		while (true) {
+			int next = this.peek();
+
+			// end line comments
+			if (next == LINE_BREAK && this.commentState == CommentState.LINE) {
+				this.commentState = null;
+				this.next();
+				continue;
+			}
+
+			// end block comments
+			if (next == '*' && this.commentState == CommentState.BLOCK) {
+				char[] next2 = this.peek(2);
+				if (next2.length != 2) {
+					this.next();
+					continue;
+				}
+
+				if (next2[1] == '/') {
+					this.commentState = null;
+					this.next(2);
+					continue;
+				}
+			}
+
+			// starting comments
+			if (next == '/' && this.commentState == null) {
+				char[] next2 = this.peek(2);
+				if (next2.length != 2) {
+					this.next();
+					continue;
+				}
+
+				if (next2[1] == '/') {
+					this.commentState = CommentState.LINE;
+					this.next(2);
+					continue;
+				} else if (next2[1] == '*') {
+					this.commentState = CommentState.BLOCK;
+					this.next(2);
+					continue;
+				}
+			}
+
+			// discard all content in comments
+			if (this.commentState != null) {
+				this.next();
+				continue;
+			}
+
+			// finally actually check for whitespace
+			if (Character.isWhitespace(next)) {
+				this.next();
+				continue;
+			}
+
+			// otherwise, end found
+			break;
 		}
 	}
 
@@ -142,7 +201,7 @@ public class ParseInput {
 	 * Shortcut for error that just adds 'at ${pos}' to the end.
 	 */
 	public JsonException errorAt(String message) {
-		return error(pos -> message + " at " + pos);
+		return this.error(pos -> message + " at " + pos);
 	}
 
 	private char read() throws IOException {
@@ -153,7 +212,7 @@ public class ParseInput {
 		return (char) next;
 	}
 
-	public static class Position {
+	public static final class Position {
 		public final int line;
 		public final int col;
 
@@ -166,5 +225,9 @@ public class ParseInput {
 		public String toString() {
 			return "line " + this.line + ", col. " + this.col;
 		}
+	}
+
+	private enum CommentState {
+		LINE, BLOCK
 	}
 }

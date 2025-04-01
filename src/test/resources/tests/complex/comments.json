@@ -1,0 +1,16 @@
+{
+  // ignored {}""123
+  "test": 1,
+  /*******/
+  "int": 5,
+  "object": {
+    /**
+    long explanation
+    */
+    "bool": true,
+    "/*string//": "/*yes*///",
+    "empty": null
+  }
+}
+//
+/* trailing block

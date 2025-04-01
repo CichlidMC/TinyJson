@@ -32,4 +32,6 @@ public class SimpleJsonTests {
 	public static final String ARRAY_MISSING_COMMA = "Expected comma before value at line 4, col. 4";
 	@Test(fails = true)
 	public static final String OBJECT_MISSING_COMMA = "Expected comma before entry at line 4, col. 4";
+	@Test(fails = true)
+	public static final String INCOMPLETE_OBJECT = "Unexpected EOF at line 3, col. 1";
 }
