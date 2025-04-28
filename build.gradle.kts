@@ -3,7 +3,7 @@ plugins {
     id("maven-publish")
 }
 
-group = "io.github.cichlidmc"
+group = "fish.cichlidmc"
 version = "1.2.0"
 
 repositories {
