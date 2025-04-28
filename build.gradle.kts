@@ -3,7 +3,6 @@ plugins {
     id("maven-publish")
 }
 
-base.archivesName = "TinyJson"
 group = "io.github.cichlidmc"
 version = "1.2.0"
 

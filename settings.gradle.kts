@@ -1,1 +1,1 @@
-rootProject.name = "TinyJson"
+rootProject.name = "tiny-json"
